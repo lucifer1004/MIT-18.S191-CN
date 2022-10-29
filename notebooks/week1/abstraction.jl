@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.4
+# v0.19.13
 
 using Markdown
 using InteractiveUtils
@@ -52,14 +52,14 @@ font-size: 1.5rem;
 opacity: .8;
 "><em>Section 1.2</em></p>
 <p style="text-align: center; font-size: 2rem;">
-<em> Intro to Abstractions </em>
+<em> 什么是抽象？ </em>
 </p>
 
 <p style="
 font-size: 1.5rem;
 text-align: center;
 opacity: .8;
-"><em>Lecture Video</em></p>
+"><em>课程视频</em></p>
 <div style="display: flex; justify-content: center;">
 <div  notthestyle="position: relative; right: 0; top: 0; z-index: 300;">
 <iframe src="https://www.youtube.com/embed/3zTO3LEY-cM" width=400 height=250  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
@@ -77,52 +77,53 @@ PlutoUI.TableOfContents(aside=true)
 
 # ╔═╡ 792c6a62-ec41-11ea-01f3-73e7eee23cc7
 md"""
-#### Intializing packages
+#### 初始化包
 
-_When running this notebook for the first time, this could take up to 15 minutes. Hang in there!_
+_当你第一次运行这个笔记本时，这可能需要花费 15 分钟。请耐心等待！_
 """
 
 # ╔═╡ ef1bfa16-70ea-11eb-189c-a54db292cd6f
 md"
-## Introduction
+## 引言
 
-The goal of this section is to introduce you to the notion of abstraction. You can think of abstraction as an opposite to specialization. We will illustrate this by looking at the following example.
+这一节的目标是向你介绍*抽象*这一概念。你可以把*抽象*看成是*特化*的反义词。我们会在下面的例子中展示这一点。
 
-### What is _one_?
+### “一”是什么？
 
-Before we get lost talking about the foundations of number theory, I will present you with a few examples that represent one to me. 
+趁我们还没有在数论基础的讨论中迷失，我先给你看几个对我来说意味着“一”的例子。
 "
 
 # ╔═╡ 6fcac482-70ee-11eb-0b80-ff41c708053b
-md"Each of the items in this list is a specific, or **_specialized_** representation of _one_:
-1. as an integer
-1. as a float
-1. as a string
-1. as a rational number
-1. as a cute picture
-1. as an 2x2 identity matrix
-1. as a singular dog
+md"上述列表中的每一项都是一个特定的，_特化_的“一”的表示形式：
+1. 作为一个整数
+1. 作为一个浮点数
+1. 作为一个字符串
+1. 作为一个有理数（分数）
+1. 作为一张有意思的图片
+1. 作为一个2x2的单位矩阵
+1. 作为一条“单身”狗
 
-Of course, these are just a few examples of _one_. People have been representing _one_ for ages in different langauges, scripts, artistic expression, etc.
+当然，这些仅仅是“一”的部分例子。长久以来，人们使用各种不同的语言、代码和艺术形式对“一”进行表达。
 
-The difference between these ones to me is clear. In fact, I just articulated it to you. Now, let's turn to how a computer sees _one_ differently based on what I type.
+它们之间的差别对我来说是很明显的。事实上，我刚刚已经把这些差别告诉你了。现在，让我们看看计算机是如何看待我刚刚罗列的这些“一”的。
 "
 
 # ╔═╡ 9ebc079a-70f0-11eb-07d9-f9e80f3f4584
-md"So to a computer, all of these are different types."
+md"所以对计算机来说，上面这些都是不同的类型。"
 
 # ╔═╡ 15f7f90a-70f0-11eb-0d41-63677e4023f4
-md"### What is a collection of _one_s?
+md"### 什么是“一”的集合？
 
-Now, I want to make a collection of ones for some reason. Below is a way for you to experiment building this collection with different _one_s. As you do this experiment, I want you to look at what stays in the same in the Julia output, and what doesn't."
+现在，出于某种目的，我想要构建一个“一”的集合。下面给你提供了一种尝试用不同的“一”构建这一集合的方式。在你进行实验时，我希望你关注 Julia 的输出中哪些东西保持不变，而哪些东西发生了变化。
+"
 
 # ╔═╡ f6886d90-70ed-11eb-07c4-471ee267e7c1
 md"""
-Before we even look at the output, I am amazed that this code even ran. Are you telling me that the computer doesn't care which _one_ I am using in my array?
+在我们看程序的输出之前，这段代码已经惊到了我。你是在说，计算机并不关心我在数组里用的是哪个“一”吗？
 
-Yes! That's exactly what abstraction is. By stepping back, we can now think and operate at a level that doesn't care about which _specific_ one I am using. This is what we mean by **abstraction is the opposite of specialization**.
+没错！这正是抽象的意义所在。回退一步，我们现在可以在这样的层级进行思考和操作：我们完全不需要关心*具体*用的是哪一个“一”。这就是上面说的*抽象*是*特化*的反义词。
 
-The information that Julia gives back is quite informative. Here is an example of the first line of the output for a few different types: 
+Julia 给我们的信息相当丰富。下面是给出了使用几种不同类型时，输出的第一行：
 
 ```
 array = 3x4 Array{Int64, 2}
@@ -130,14 +131,14 @@ array = 3x4 Array{Float64, 2}
 array = 3x4 Array{Rational{Int64}, 2}
 ```
 
-Notice that for all of these, we have the same `3x4 Array{***, 2}`. 
+注意：在这三种情况中，有着相同的结构 `3x4 Array{***, 2}`. 
 """
 
 # ╔═╡ 3c1a3cf8-70f8-11eb-3c18-375207f321eb
 md"""
-## First Taste of Abstraction
+## 抽象初体验
 
-Now, I want to do something to a collection of ones, that doesn't care about which one I'm using. So I'm going to write a function that takes in my collection, and add a corgi whereever I desire.
+现在我想要对这个“一”的集合进行一次操作。这个操作与用了哪个“一”无关。我现在要写一个函数，它以“一”的集合作为输入，并在我指定的位置放上一只柯基。
 """
 
 # ╔═╡ 19f4ddb0-ec44-11ea-20b9-5d97fb2b1cf4
@@ -163,32 +164,33 @@ begin
 end
 
 # ╔═╡ ee43d808-70fa-11eb-0cc6-337279f41494
-md"This is still amazing. I wrote one function that just cares about how to insert an object into an array, without knowing anything about what's inside, and it worked for two completely different arrays, _collections of ones of **any kind**_."
+md"这相当惊人。我写了一个函数，这个函数只关心如何将一个对象插入数组中，而不需要知道数组里有什么。对于任意类型的“一”的集合，完全不同的数组，它都一样正常工作。"
 
 # ╔═╡ 263a8a0a-70ee-11eb-236d-c941ba63dff3
 md"
-## Conclusion
-The key idea here is that a computer language should allow you to do operations that make sense. Often times, an operation can make sense for many different objects. So we can abstract away the specifics of the object in our implementation. It should let you step back from there.
+## 结论
+
+这里的要点是：计算机语言应当允许你去做有意义的操作。一个操作往往对许多不同的对象都是有意义的。因此，我们可以在我们的实现中，对这些对象的具体特征进行抽象。你应当可以从特化回退一步。
 "
 
 # ╔═╡ 52461588-ea1a-4e7d-aec2-3de388d31656
 md"""
-## Appendix
+## 附录
 """
 
 # ╔═╡ 1a2a9000-ec43-11ea-3f39-8312ea286a92
 begin
 	oneimage = load(download("https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Decorative-Numbers/Cute_Number_One_PNG_Clipart_Image.png?m=1437447301"))
-	corgi = load(download("https://i.barkpost.com/wp-content/uploads/2015/01/corgi2.jpg?q=70&fit=crop&crop=entropy&w=808&h=500"))
+	corgi = load(download("https://images.unsplash.com/photo-1554692901-e16f2046918a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNvcmdpfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"))
 	nothing
 end
 
 
 # ╔═╡ 0504ac94-70ee-11eb-1c4e-977d9e7d35c9
-one = [
+一 = [
 	1,
 	1.0,
-	"one",
+	"一",
 	1//1,
 	oneimage,
 	[1 0; 0 1],
@@ -196,26 +198,26 @@ one = [
 ]
 
 # ╔═╡ 0b1668ba-ec42-11ea-3e50-ed97c5b17ced
-computer_ones = typeof.(one)
+计算机眼里的一 = typeof.(一)
 
 # ╔═╡ b2239b96-70ef-11eb-0b85-21ecab25dc9f
 begin
 	one_keys = ["1", "1.0", "one", "1//1", "Cute One", "2x2 Identity", "One Corgi"] 
 	selections = one_keys .=> one_keys
-	lookup_element = Dict(one_keys .=> one)
+	lookup_element = Dict(one_keys .=> 一)
 	md"$(@bind element_key Select(selections))"
 end
 
 # ╔═╡ 4251f668-70aa-11eb-3d89-35f8d53b7d9b
-# your chosen one
+# 你选择的“一”
 element = lookup_element[element_key]
 
 # ╔═╡ f1568d10-ec41-11ea-3dd2-a9cb273ce5b8
-# its type
+# 它的类型
 typeof(element)
 
 # ╔═╡ ab02d850-ec41-11ea-10b2-a1b600b12658
-# a 3x4 array of this one.
+# 一个由你选择的“一”构成的 3x4 的二维数组。
 array = fill(element,3,4)
 
 # ╔═╡ 5363a400-ec44-11ea-284e-d13a8872551c
@@ -261,6 +263,7 @@ version = "3.3.3"
 
 [[ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
+version = "1.1.1"
 
 [[ArnoldiMethod]]
 deps = ["LinearAlgebra", "Random", "StaticArrays"]
@@ -348,6 +351,7 @@ version = "3.43.0"
 [[CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
+version = "0.5.2+0"
 
 [[ComputationalResources]]
 git-tree-sha1 = "52cb3ec90e8a8bea0e62e275ba577ad0f74821f7"
@@ -401,8 +405,9 @@ uuid = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 version = "0.8.6"
 
 [[Downloads]]
-deps = ["ArgTools", "LibCURL", "NetworkOptions"]
+deps = ["ArgTools", "FileWatching", "LibCURL", "NetworkOptions"]
 uuid = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
+version = "1.6.0"
 
 [[DualNumbers]]
 deps = ["Calculus", "NaNMath", "SpecialFunctions"]
@@ -433,6 +438,9 @@ deps = ["Pkg", "Requires", "UUIDs"]
 git-tree-sha1 = "9267e5f50b0e12fdfd5a2455534345c4cf2c7f7a"
 uuid = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
 version = "1.14.0"
+
+[[FileWatching]]
+uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 
 [[FixedPointNumbers]]
 deps = ["Statistics"]
@@ -669,10 +677,12 @@ uuid = "4af54fe1-eca0-43a8-85a7-787d91b784e3"
 [[LibCURL]]
 deps = ["LibCURL_jll", "MozillaCACerts_jll"]
 uuid = "b27032c2-a3e7-50c8-80cd-2d36dbcbfd21"
+version = "0.6.3"
 
 [[LibCURL_jll]]
 deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll", "Zlib_jll", "nghttp2_jll"]
 uuid = "deac9b47-8bc7-5906-a0fe-35ac56dc84c0"
+version = "7.84.0+0"
 
 [[LibGit2]]
 deps = ["Base64", "NetworkOptions", "Printf", "SHA"]
@@ -681,6 +691,7 @@ uuid = "76f85450-5226-5b5a-8eaa-529ad045b433"
 [[LibSSH2_jll]]
 deps = ["Artifacts", "Libdl", "MbedTLS_jll"]
 uuid = "29816b5a-b9ab-546f-933c-edad1886dfa8"
+version = "1.10.2+0"
 
 [[Libdl]]
 uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
@@ -728,6 +739,7 @@ uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
 [[MbedTLS_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
+version = "2.28.0+0"
 
 [[MetaGraphs]]
 deps = ["Graphs", "JLD2", "Random"]
@@ -752,6 +764,7 @@ version = "0.3.3"
 
 [[MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
+version = "2022.2.1"
 
 [[NaNMath]]
 git-tree-sha1 = "b086b7ea07f8e38cf122f5016af580881ac914fe"
@@ -772,6 +785,7 @@ version = "1.0.2"
 
 [[NetworkOptions]]
 uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
+version = "1.2.0"
 
 [[OffsetArrays]]
 deps = ["Adapt"]
@@ -782,6 +796,7 @@ version = "1.11.0"
 [[OpenBLAS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
 uuid = "4536629a-c528-5b80-bd46-f80d51c5b363"
+version = "0.3.20+0"
 
 [[OpenEXR]]
 deps = ["Colors", "FileIO", "OpenEXR_jll"]
@@ -798,6 +813,7 @@ version = "3.1.1+0"
 [[OpenLibm_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "05823500-19ac-5b8b-9628-191a04bc5112"
+version = "0.8.1+0"
 
 [[OpenSpecFun_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl", "Pkg"]
@@ -837,6 +853,7 @@ version = "2.3.1"
 [[Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+version = "1.8.0"
 
 [[PkgVersion]]
 deps = ["Pkg"]
@@ -922,6 +939,7 @@ version = "1.3.1"
 
 [[SHA]]
 uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
+version = "0.7.0"
 
 [[Serialization]]
 uuid = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
@@ -998,10 +1016,12 @@ version = "0.33.16"
 [[TOML]]
 deps = ["Dates"]
 uuid = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+version = "1.0.0"
 
 [[Tar]]
 deps = ["ArgTools", "SHA"]
 uuid = "a4e569a6-e804-4fa4-b0f3-eef7a1d5b13e"
+version = "1.10.1"
 
 [[TensorCore]]
 deps = ["LinearAlgebra"]
@@ -1057,6 +1077,7 @@ version = "0.5.5"
 [[Zlib_jll]]
 deps = ["Libdl"]
 uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
+version = "1.2.12+3"
 
 [[Zstd_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1067,6 +1088,7 @@ version = "1.5.2+0"
 [[libblastrampoline_jll]]
 deps = ["Artifacts", "Libdl", "OpenBLAS_jll"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
+version = "5.1.1+0"
 
 [[libpng_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg", "Zlib_jll"]
@@ -1083,10 +1105,12 @@ version = "1.8.6+1"
 [[nghttp2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850ede-7688-5339-a07c-302acd2aaf8d"
+version = "1.48.0+0"
 
 [[p7zip_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
+version = "17.4.0+0"
 """
 
 # ╔═╡ Cell order:
@@ -1094,22 +1118,22 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─60ae819a-70a7-11eb-31d4-750c7f5dc6ca
 # ╟─792c6a62-ec41-11ea-01f3-73e7eee23cc7
 # ╠═da1d65a0-ec42-11ea-0141-334c9eeeb035
-# ╟─ef1bfa16-70ea-11eb-189c-a54db292cd6f
+# ╠═ef1bfa16-70ea-11eb-189c-a54db292cd6f
 # ╠═0504ac94-70ee-11eb-1c4e-977d9e7d35c9
-# ╟─6fcac482-70ee-11eb-0b80-ff41c708053b
+# ╠═6fcac482-70ee-11eb-0b80-ff41c708053b
 # ╠═0b1668ba-ec42-11ea-3e50-ed97c5b17ced
-# ╟─9ebc079a-70f0-11eb-07d9-f9e80f3f4584
+# ╠═9ebc079a-70f0-11eb-07d9-f9e80f3f4584
 # ╟─15f7f90a-70f0-11eb-0d41-63677e4023f4
 # ╠═b2239b96-70ef-11eb-0b85-21ecab25dc9f
 # ╠═4251f668-70aa-11eb-3d89-35f8d53b7d9b
 # ╠═f1568d10-ec41-11ea-3dd2-a9cb273ce5b8
 # ╠═ab02d850-ec41-11ea-10b2-a1b600b12658
 # ╟─f6886d90-70ed-11eb-07c4-471ee267e7c1
-# ╟─3c1a3cf8-70f8-11eb-3c18-375207f321eb
+# ╠═3c1a3cf8-70f8-11eb-3c18-375207f321eb
 # ╠═19f4ddb0-ec44-11ea-20b9-5d97fb2b1cf4
 # ╠═424f5f10-ec44-11ea-076d-f3cba4435e0c
 # ╠═5363a400-ec44-11ea-284e-d13a8872551c
-# ╠═71ac08ea-7145-11eb-237d-5506adfb9533
+# ╟─71ac08ea-7145-11eb-237d-5506adfb9533
 # ╟─ee43d808-70fa-11eb-0cc6-337279f41494
 # ╟─263a8a0a-70ee-11eb-236d-c941ba63dff3
 # ╟─52461588-ea1a-4e7d-aec2-3de388d31656
