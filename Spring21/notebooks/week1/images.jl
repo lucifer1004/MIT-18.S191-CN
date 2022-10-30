@@ -114,32 +114,34 @@ md"""
 
 # ╔═╡ fb8a99ac-6bc1-11eb-0835-3146734a1c99
 md"""
-Applications of computer science in the real world use **data**, i.e. information that we can **measure** in some way. Data take many different forms, for example:
+现实世界中的计算机科学应用使用**数据**，即我们可以以某种方式**测量**的信息。 数据有许多不同的形式，例如：
 
-- Numbers that change over time (**time series**): 
-  - Stock price each second / minute / day
-  - Weekly number of infections
-  - Earth's global average temperature
+- 随时间变化的数字（**时间序列**）：
+   - 股票的每秒/分钟/天价格
+   - 传染病的每周感染人数
+   - 地球的全球平均温度
 
-- Video:
-  - The view from a window of a self-driving car
-  - A hurricane monitoring station
-  - Ultrasound e.g. prenatal
+- 视频：
+   - 自动驾驶汽车窗外的景色
+   - 飓风监测站
+   - 超声波，例如产前检测
 
-- Images:
-  - Diseased versus healthy tissue in a medical scan
-  - Pictures of your favourite dog
+- 图片：
+   - 医学扫描中的患病组织与健康组织
+   - 你最喜欢的狗的照片
 """
 
 # ╔═╡ b795dcb4-6bc3-11eb-20ec-db2cc4b89bfb
 md"""
-#### Exercise: 
-> Think of another two examples in each category. Can you think of other categories of data?
+#### 练习：
+
+> - 对于上面提到的每个类别，再想出两个例子。
+> - 你还能想到其他类别的数据吗？
 """
 
 # ╔═╡ 8691e434-6bc4-11eb-07d1-8169158484e6
 md"""
-Computational science can be summed up by a simplified workflow:
+简单来说，计算科学可以概括为下面的工作流程：
 """
 
 # ╔═╡ 546db74c-6d4e-11eb-2e27-f5bed9dbd9ba
@@ -150,20 +152,21 @@ md"""
 # ╔═╡ 6385d174-6d4e-11eb-093b-6f6fafb79f84
 md"""
 $(html"<br>")
-To use any data source, we need to **input** the data of interest, for example by downloading it, reading in the resulting file, and converting it into a form that we can use in the computer. Then we need to **process** it in some way to extract information of interest. We usually want to **visualize** the results, and we may want to **output** them, for example by saving to disc or putting them on a website.
+要使用任何数据源，我们需要**输入**感兴趣的数据，例如通过下载、读取结果文件并将其转换为我们可以在计算机中使用的形式。然后我们需要以某种方式**处理**它以提取感兴趣的信息。我们通常想要**可视化**结果，我们可能还想要**输出**它们，例如保存到光盘或将它们放在网站上。
 
-We often want to make a mathematical or computational **model** that can help us to understand and predict the behavior of the system of interest.
+我们经常想要构建一个数学或计算**模型**来帮助我们理解和预测一个我们感兴趣的系统的行为。
 
-> In this course we aim to show how programming, computer science and applied math combine to help us with these goals.
+> 在本课程中，我们旨在展示如何将编程、计算机科学和应用数学结合起来以实现这些目标。
 """
 
 # ╔═╡ 132f6596-6bc6-11eb-29f1-1b2478c929af
 md"""
 # 数据：图像（作为数据的一个例子）
-Let's start off by looking at **images** and how we can process them. 
-Our goal is to process the data contained in an image in some way, which we will do by developing and coding certain **algorithms**.
 
-Here is the the Fall 2020 version of this lecture (small variations) by 3-Blue-1-Brown (Grant Sanderson) for your reference.
+我们首先来看一些**图像**，并看看我们要如何处理它们。
+我们的目标是以某种方式处理图像中包含的数据，而这将会依赖于开发和编码某些**算法**。
+
+下面是 3-Blue-1-Brown（Grant Sanderson）为本课程 2020 年秋季版制作的视频（有一些微小的改动），供参考。
 """
 
 # ╔═╡ 635a03dd-abd7-49c8-a3d2-e68c7d83cc9b
@@ -174,38 +177,36 @@ html"""
 # ╔═╡ 9eb6efd2-6018-11eb-2db8-c3ce41d9e337
 md"""
 
+如果我们在计算机或网络上打开图像并放大到足够大，我们会看到它由许多小方块或**像素**（“图片元素”）组成。每个像素是一个单一颜色的块，像素排列成二维方格。
 
-If we open an image on our computer or the web and zoom in enough, we will see that it consists of many tiny squares, or **pixels** ("picture elements"). Each pixel is a block of one single colour, and the pixels are arranged in a two-dimensional square grid. 
+你可能已经知道这些像素以数字形式存储在计算机中。可能是某种形式的 RGB（红、绿、蓝）格式。这是计算机对图像数据的表示方式。
 
-You probably already know that these pixels are stored in a computer numerically
-perhaps in some form of RGB (red,green,blue) format.  This is the computer's represenation of the data.   
-
-Note that an image is already an **approximation** of the real world -- it is a two-dimensional, discrete representation of a three-dimensional reality.
+请注意，图像已经是现实世界的**近似**——它是三维现实的二维离散表示。
 
 """
 
 # ╔═╡ e37e4d40-6018-11eb-3e1d-093266c98507
 md"""
-# Input and Visualize: loading and viewing an Image (in Julia)
+# 输入与可视化：加载并显示一张图像（使用 Julia）
 """
 
 # ╔═╡ e1c9742a-6018-11eb-23ba-d974e57f78f9
 md"""
-Let's use Julia to load  actual images and play around with them. We can download images from the internet, your own file, or your own webcam.
+让我们使用 Julia 加载实际图像并使用它们。这里的图像可以是从互联网上下载的，可以是你自己的文件，也可以来自你的摄像头。
 """
 
 # ╔═╡ 9b004f70-6bc9-11eb-128c-914eadfc9a0e
 md"""
-## Downloading an image from the internet or a local file
-We can use the `Images.jl` package to load an image file in three steps.
+## 从互联网下载图像或加载本地的图像文件
+我们可以使用 `Images.jl` 这个包，通过三个步骤加载一个图像文件。
 """
 
 # ╔═╡ 62fa19da-64c6-11eb-0038-5d40a6890cf5
 md"""
-Step 1: (from internet) we specify the URL (web address) to download from:
+
+第 1 步：（从互联网下载）我们指定要从以下位置下载的 URL（网址）：
 $(html"<br>")
-(note that Pluto places results before commands because some people believe
-output is more interesting than code.  This takes some getting used to.)
+（请注意，Pluto 将结果放在命令之前，因为有些人认为输出比代码更有趣。 这需要一些时间来适应。）
 """
 
 # ╔═╡ 34ee0954-601e-11eb-1912-97dc2937fd52
@@ -213,7 +214,9 @@ url = "https://user-images.githubusercontent.com/6933510/107239146-dcc3fd00-6a28
 
 # ╔═╡ 9180fbcc-601e-11eb-0c22-c920dc7ee9a9
 md"""
-Step 2: Now we use the aptly-named `download` function to download the image file to our own computer. (Philip is Prof. Edelman's corgi.)
+
+第 2 步：现在我们使用 `downlaod` 函数将图像文件下载到我们自己的计算机上。（Philip 是 Edelman 教授的柯基犬。）
+
 """
 
 # ╔═╡ 34ffc3d8-601e-11eb-161c-6f9a07c5fd78
@@ -221,26 +224,28 @@ philip_filename = download(url) # download to a local file. The filename is retu
 
 # ╔═╡ abaaa980-601e-11eb-0f71-8ff02269b775
 md"""
-Step 3:
-Using the `Images.jl` package (loaded at the start of this notebook; scroll up and take a look.) we can **load** the file, which automatically converts it into usable data. We'll store the result in a variable. (Remember the code is after the output.)
+
+第 3 步：使用 `Images.jl` 包（在这个笔记本的开头我们已经加载了它；你可以回到开头看一下。）我们可以 **加载** 这一文件，它将被自动地转换为可用的数据。我们会把结果存储在一个变量中。（记住，代码在输出的后面。）
+
 """
 
 # ╔═╡ aafe76a6-601e-11eb-1ff5-01885c5238da
 philip = load(philip_filename)
 
 # ╔═╡ e86ed944-ee05-11ea-3e0f-d70fc73b789c
-md"_Hi there Philip_"
+md"_你好 Philip_"
 
 # ╔═╡ c99d2aa8-601e-11eb-3469-497a246db17c
 md"""
-We see that the Pluto notebook has recognised that we created an object representing an image, and automatically displayed the resulting image of Philip, the cute Welsh Pembroke corgi and co-professor of this course.
-Poor Philip will undergo quite a few transformations as we go along!
+我们看到 Pluto 笔记本已经识别出我们创建了一个代表图像的对象，并自动显示了 Philip 的结果图像。Philip 是一条可爱的威尔士彭布罗克柯基犬，也是本课程的共同教授。
+
+可怜的 Philip 将在我们前进的过程中经历相当多的变换！
 """
 
 # ╔═╡ 11dff4ce-6bca-11eb-1056-c1345c796ed4
 md"""
-- Exercise : change the url.
-- Exercise: download a file that is already on your own computer.
+- 练习：使用另一个 URL。
+- 练习：尝试下载一个已经在你计算机上的文件。
 """
 
 # ╔═╡ efef3a32-6bc9-11eb-17e9-dd2171be9c21
@@ -250,23 +255,22 @@ md"""
 
 # ╔═╡ e94dcc62-6d4e-11eb-3d53-ff9878f0091e
 md"""
-Even more fun is to use your own webcam. Try pressing the enable button below. Then
-press the camera to capture an image. Kind of fun to keep pressing the button as you move your hand etc.
+更有趣的是使用你自己的摄像头。尝试按下下面的启用按钮，然后按下相机拍摄图像。在你作出移动手等动作时按下按钮会很有趣。
 """
 
 # ╔═╡ cef1a95a-64c6-11eb-15e7-636a3621d727
 md"""
-## Inspecting your data
+## 检视你的数据
 """
 
 # ╔═╡ f26d9326-64c6-11eb-1166-5d82586422ed
 md"""
-### Image size
+### 图像尺寸
 """
 
 # ╔═╡ 6f928b30-602c-11eb-1033-71d442feff93
 md"""
-The first thing we might want to know is the size of the image:
+我们最先想做的事情可能是了解这张图像的尺寸：
 """
 
 # ╔═╡ 75c5c85a-602c-11eb-2fb1-f7e7f2c5d04b
@@ -274,7 +278,7 @@ philip_size = size(philip)
 
 # ╔═╡ 77f93eb8-602c-11eb-1f38-efa56cc93ca5
 md"""
-Julia returns a pair of two numbers. Comparing these with the picture of the image, we see that the first number is the height, i.e. the vertical number of pixels, and the second is the width.
+Julia 返回了一对数字。将数字与图像的图片进行比较，我们看到第一个数字是高度，即垂直像素数，第二个是宽度。
 """
 
 # ╔═╡ 96b7d801-c427-4e27-ab1f-e2fd18fc24d0
@@ -1704,18 +1708,18 @@ version = "17.4.0+0"
 # ╟─ca1b507e-6017-11eb-34e6-6b85cd189002
 # ╟─e9ff96d8-6bc1-11eb-0f6a-234b9fae047e
 # ╟─9111db10-6bc3-11eb-38e5-cf3f58536914
-# ╟─fb8a99ac-6bc1-11eb-0835-3146734a1c99
+# ╠═fb8a99ac-6bc1-11eb-0835-3146734a1c99
 # ╟─b795dcb4-6bc3-11eb-20ec-db2cc4b89bfb
 # ╟─8691e434-6bc4-11eb-07d1-8169158484e6
 # ╟─546db74c-6d4e-11eb-2e27-f5bed9dbd9ba
-# ╟─6385d174-6d4e-11eb-093b-6f6fafb79f84
-# ╟─132f6596-6bc6-11eb-29f1-1b2478c929af
+# ╠═6385d174-6d4e-11eb-093b-6f6fafb79f84
+# ╠═132f6596-6bc6-11eb-29f1-1b2478c929af
 # ╟─635a03dd-abd7-49c8-a3d2-e68c7d83cc9b
 # ╟─9eb6efd2-6018-11eb-2db8-c3ce41d9e337
 # ╟─e37e4d40-6018-11eb-3e1d-093266c98507
 # ╟─e1c9742a-6018-11eb-23ba-d974e57f78f9
 # ╟─9b004f70-6bc9-11eb-128c-914eadfc9a0e
-# ╟─62fa19da-64c6-11eb-0038-5d40a6890cf5
+# ╠═62fa19da-64c6-11eb-0038-5d40a6890cf5
 # ╠═34ee0954-601e-11eb-1912-97dc2937fd52
 # ╟─9180fbcc-601e-11eb-0c22-c920dc7ee9a9
 # ╠═34ffc3d8-601e-11eb-161c-6f9a07c5fd78
@@ -1723,9 +1727,9 @@ version = "17.4.0+0"
 # ╠═aafe76a6-601e-11eb-1ff5-01885c5238da
 # ╟─e86ed944-ee05-11ea-3e0f-d70fc73b789c
 # ╟─c99d2aa8-601e-11eb-3469-497a246db17c
-# ╟─11dff4ce-6bca-11eb-1056-c1345c796ed4
+# ╠═11dff4ce-6bca-11eb-1056-c1345c796ed4
 # ╟─efef3a32-6bc9-11eb-17e9-dd2171be9c21
-# ╟─e94dcc62-6d4e-11eb-3d53-ff9878f0091e
+# ╠═e94dcc62-6d4e-11eb-3d53-ff9878f0091e
 # ╟─d6742ea0-1106-4f3c-a5b8-a31a48d33f19
 # ╠═1d7375b7-7ea6-4d67-ab73-1c69d6b8b87f
 # ╠═6224c74b-8915-4983-abf0-30e6ba04a46d
