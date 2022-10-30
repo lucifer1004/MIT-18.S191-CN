@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.4
+# v0.19.13
 
 using Markdown
 using InteractiveUtils
@@ -52,14 +52,14 @@ font-size: 1.5rem;
 opacity: .8;
 "><em>Section 1.1</em></p>
 <p style="text-align: center; font-size: 2rem;">
-<em> Images as Data and Arrays </em>
+<em> 作为数据和数组的图像 </em>
 </p>
 
 <p style="
 font-size: 1.5rem;
 text-align: center;
 opacity: .8;
-"><em>Lecture Video</em></p>
+"><em>课程视频</em></p>
 <div style="display: flex; justify-content: center;">
 <div  notthestyle="position: relative; right: 0; top: 0; z-index: 300;">
 <iframe src="https://www.youtube.com/embed/3zTO3LEY-cM" width=400 height=250  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
@@ -77,40 +77,39 @@ PlutoUI.TableOfContents(aside=true)
 
 # ╔═╡ 9b49500c-0164-4556-a17b-7595e35c5ede
 md"""
-#### Intializing packages
+#### 初始化包
 
-_When running this notebook for the first time, this could take up to 15 minutes. Hang in there!_
+_当你第一次运行这个笔记本时，这可能需要花费 15 分钟。请耐心等待！_
 """
 
 # ╔═╡ ca1b507e-6017-11eb-34e6-6b85cd189002
 md"""
-# Images as examples of data  all around us
-Welcome to the Computational Thinking using Julia for Real-World Problems, at MIT in Spring 2021!
+# 日常生活中的数据实例——图像
 
-The aim of this course is to bring together concepts from computer science and applied math with coding in the modern **Julia language**, and to see how to apply these techniques to study interesting applications (and of course to have fun).
+欢迎来到面向实际问题的计算思维课程！本课程为 MIT 在 2021 年春季学期开设，使用 Julia 语言。
 
-We would be pleased if students who have been interested in computer science now become interested in computational science and those interested in scientific applications learn computer science they may not see elsewhere.
-... and for all students, we wish to share the value of 
-the Julia  language as the best of both worlds.
+这一课程的目标是借助现代的 **Julia** 语言引入计算机科学和应用数学的一系列概念，并尝试用这些技术来研究一些有趣的问题（当然，也是为了获得乐趣）。
+
+如果对计算机科学感兴趣的同学们能够萌发对计算科学的兴趣，而那些对科学应用感兴趣的同学们能够学到一些在别处学不到的计算机科学知识，我们会非常欣喜。同时，我们希望向所有同学分享 Julia 语言的价值——它是这两个世界交汇处最好的语言。
 """
 
 # ╔═╡ e9ff96d8-6bc1-11eb-0f6a-234b9fae047e
 md"""
 
-## Alan's Essay: Are all programming languages the same? 
+## Alan 的文章：所有编程语言都是一个样吗？
 
->Superficially, many programming languages are very similar.  "Showoffs" will compare functional programming vs imperative programming.  Others will compare compiled languages vs dynamic languages.  I will avoid such fancy terms in this little essay, preferring to provide this course's pedagogical viewpoint.
->
->Generally speaking beginning programmers should learn to create "arrays" write "for loops", "conditionals", "comparisons", express mathematical formulas, etc. So why Julia at a time when Python seems to be the language of teaching, and Java and C++ so prominent in the corporate world?
->
->As you might imagine, we believe Julia is special.   Oh you will still have the nitty gritty of when to use a bracket and a comma.  You might have strong opinions as to whether arrays should begin with 0 or 1 (joke: some say it's time to compromise and use ½.)  Getting past these irrelevant issues,  you will begin to experience one by one what makes Julia so very special.  For starters, a language that runs fast is more fun.  We can have you try things that would just be so slow in other languages it would be boring.  We also think you will start to notice how natural Julia is, how it feels like the mathematics, and how flexible it can be.  
->
->Getting to see the true value of fancy terms like multiple dispatch, strong typing, generic programming, and composable software will take a little longer, but stick with us, and you too will see why Julia is so very special.
+> 表面看来，许多编程语言都非常相似。“爱显摆”的会举出函数式编程 vs 命令式编程的例子。还有人可能会举出编译语言 vs 动态语言的例子。在这篇小短文里，我会避免这些术语，而是给出这门课程教学角度的看法。
+
+> 一般来说，刚入门的编程者会学习创建“数组”，编写“ for 循环”、“条件语句”、“比较语句”、数学表达式，等等。当下，看起来 Python 是教学用语言，而 Java 和 C++ 统治着工业界，那么为什么我们要用 Julia 呢？
+
+> 和你可能想到的一样，我们相信 Julia 是特别的。哦，你还是得十分在意什么时候要用括号，什么时候要用逗号。你可能还会对数组究竟该从 0 还是从 1 开始有自己的主张（开个玩笑：有人说时候折中一下，改用 ½ 作为下标的开始了。）撇开这些无关的问题，你将会一点点感受到为什么 Julia 是特别的。对于初学者来说，一门运行得快的语言是更有意思的。我们会让你尝试一些在其他语言里非常慢以至于让你提不起兴致的事情。我们也认为，你会开始注意到 Julia 是多么自然，就像是数学一样。同时，它又是多么灵活。
+
+> 要领会像多重派发、强类型、泛型编程、组合式软件这些术语的真正价值可能需要更长的时间，但坚持跟着我们，你也会看到为什么 Julia 这么特别。
 """
 
 # ╔═╡ 9111db10-6bc3-11eb-38e5-cf3f58536914
 md"""
-## Computer Science and Computational Science Working Together
+## 计算机科学与计算科学的交融
 """
 
 # ╔═╡ fb8a99ac-6bc1-11eb-0835-3146734a1c99
@@ -145,7 +144,7 @@ Computational science can be summed up by a simplified workflow:
 
 # ╔═╡ 546db74c-6d4e-11eb-2e27-f5bed9dbd9ba
 md"""
-## data ⟶  input  ⟶ process ⟶ model ⟶ visualize ⟶ output
+## 数据 ⟶ 输入 ⟶ 处理 ⟶ 建模 ⟶ 可视化 ⟶ 输出
 """
 
 # ╔═╡ 6385d174-6d4e-11eb-093b-6f6fafb79f84
@@ -160,7 +159,7 @@ We often want to make a mathematical or computational **model** that can help us
 
 # ╔═╡ 132f6596-6bc6-11eb-29f1-1b2478c929af
 md"""
-# Data: Images (as an example of data)
+# 数据：图像（作为数据的一个例子）
 Let's start off by looking at **images** and how we can process them. 
 Our goal is to process the data contained in an image in some way, which we will do by developing and coding certain **algorithms**.
 
@@ -736,15 +735,15 @@ We can do the same to create different size matrices, by creating two sliders, o
 
 # ╔═╡ ace86c8a-60ee-11eb-34ef-93c54abc7b1a
 md"""
-# Summary
+# 小结
 """
 
 # ╔═╡ b08e57e4-60ee-11eb-0e1a-2f49c496668b
 md"""
-Let's summarize the main ideas from this notebook:
-- Images are **arrays** of colors
-- We can inspect and modify arrays using **indexing**
-- We can create arrays directly or using **array comprehensions**
+让我们来小结一下这个笔记本的核心思想吧：
+- 图像是颜色构成的*数组*
+- 我们可以借助*索引*来检视和修改数组
+- 我们可以直接创建数组，也可以使用*数组推导*
 """
 
 # ╔═╡ 9025a5b4-6066-11eb-20e8-099e9b8f859e
@@ -1193,6 +1192,7 @@ version = "3.3.3"
 
 [[ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
+version = "1.1.1"
 
 [[Artifacts]]
 uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
@@ -1244,6 +1244,7 @@ version = "3.43.0"
 [[CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
+version = "0.5.2+0"
 
 [[DataStructures]]
 deps = ["Compat", "InteractiveUtils", "OrderedCollections"]
@@ -1270,14 +1271,18 @@ uuid = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 version = "0.8.6"
 
 [[Downloads]]
-deps = ["ArgTools", "LibCURL", "NetworkOptions"]
+deps = ["ArgTools", "FileWatching", "LibCURL", "NetworkOptions"]
 uuid = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
+version = "1.6.0"
 
 [[FileIO]]
 deps = ["Pkg", "Requires", "UUIDs"]
 git-tree-sha1 = "9267e5f50b0e12fdfd5a2455534345c4cf2c7f7a"
 uuid = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
 version = "1.14.0"
+
+[[FileWatching]]
+uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 
 [[FixedPointNumbers]]
 deps = ["Statistics"]
@@ -1391,10 +1396,12 @@ version = "2.1.2+0"
 [[LibCURL]]
 deps = ["LibCURL_jll", "MozillaCACerts_jll"]
 uuid = "b27032c2-a3e7-50c8-80cd-2d36dbcbfd21"
+version = "0.6.3"
 
 [[LibCURL_jll]]
 deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll", "Zlib_jll", "nghttp2_jll"]
 uuid = "deac9b47-8bc7-5906-a0fe-35ac56dc84c0"
+version = "7.84.0+0"
 
 [[LibGit2]]
 deps = ["Base64", "NetworkOptions", "Printf", "SHA"]
@@ -1403,6 +1410,7 @@ uuid = "76f85450-5226-5b5a-8eaa-529ad045b433"
 [[LibSSH2_jll]]
 deps = ["Artifacts", "Libdl", "MbedTLS_jll"]
 uuid = "29816b5a-b9ab-546f-933c-edad1886dfa8"
+version = "1.10.2+0"
 
 [[Libdl]]
 uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
@@ -1432,6 +1440,7 @@ uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
 [[MbedTLS_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
+version = "2.28.0+0"
 
 [[Mmap]]
 uuid = "a63ad114-7e13-5084-954f-fe012c677804"
@@ -1444,6 +1453,7 @@ version = "0.3.3"
 
 [[MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
+version = "2022.2.1"
 
 [[NaNMath]]
 git-tree-sha1 = "b086b7ea07f8e38cf122f5016af580881ac914fe"
@@ -1458,6 +1468,7 @@ version = "1.0.2"
 
 [[NetworkOptions]]
 uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
+version = "1.2.0"
 
 [[OffsetArrays]]
 deps = ["Adapt"]
@@ -1468,6 +1479,7 @@ version = "1.11.0"
 [[OpenBLAS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
 uuid = "4536629a-c528-5b80-bd46-f80d51c5b363"
+version = "0.3.20+0"
 
 [[OpenEXR]]
 deps = ["Colors", "FileIO", "OpenEXR_jll"]
@@ -1484,6 +1496,7 @@ version = "3.1.1+0"
 [[OpenLibm_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "05823500-19ac-5b8b-9628-191a04bc5112"
+version = "0.8.1+0"
 
 [[OpenSpecFun_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl", "Pkg"]
@@ -1517,6 +1530,7 @@ version = "2.3.1"
 [[Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+version = "1.8.0"
 
 [[PkgVersion]]
 deps = ["Pkg"]
@@ -1573,6 +1587,7 @@ version = "1.3.0"
 
 [[SHA]]
 uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
+version = "0.7.0"
 
 [[Serialization]]
 uuid = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
@@ -1613,10 +1628,12 @@ uuid = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 [[TOML]]
 deps = ["Dates"]
 uuid = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+version = "1.0.0"
 
 [[Tar]]
 deps = ["ArgTools", "SHA"]
 uuid = "a4e569a6-e804-4fa4-b0f3-eef7a1d5b13e"
+version = "1.10.1"
 
 [[TensorCore]]
 deps = ["LinearAlgebra"]
@@ -1649,10 +1666,12 @@ uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
 [[Zlib_jll]]
 deps = ["Libdl"]
 uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
+version = "1.2.12+3"
 
 [[libblastrampoline_jll]]
 deps = ["Artifacts", "Libdl", "OpenBLAS_jll"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
+version = "5.1.1+0"
 
 [[libpng_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg", "Zlib_jll"]
@@ -1669,10 +1688,12 @@ version = "1.8.6+1"
 [[nghttp2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850ede-7688-5339-a07c-302acd2aaf8d"
+version = "1.48.0+0"
 
 [[p7zip_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
+version = "17.4.0+0"
 """
 
 # ╔═╡ Cell order:
@@ -1799,7 +1820,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─1c539b02-64d8-11eb-3505-c9288357d139
 # ╟─10f6e6da-64d8-11eb-366f-11f16e73043b
 # ╟─82a8314c-64d8-11eb-1acb-e33625381178
-# ╟─576d5e3a-64d8-11eb-10c9-876be31f7830
+# ╠═576d5e3a-64d8-11eb-10c9-876be31f7830
 # ╠═2a94a2cf-b697-4b0b-afd0-af2e35af2bb1
 # ╠═3e0ece65-b8a7-4be7-ae44-6d7210c2e15b
 # ╠═4ee18bee-13e6-4478-b2ca-ab66100e57ec
